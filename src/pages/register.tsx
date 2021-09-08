@@ -1,40 +1,49 @@
-import {
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-} from "@chakra-ui/form-control";
-import { Input } from "@chakra-ui/input";
-import { Field, Form, Formik } from "formik";
-import React from "react";
+import { Button } from "@chakra-ui/button";
+import { Flex } from "@chakra-ui/layout";
+import { Form, Formik } from "formik";
 import InputField from "../components/InputField";
 import Wrapper from "../components/Wrapper";
-// import React from "react";
-// import React from "react";
+import { useRegisterMutation } from "../generated/graphql";
 
-interface registerProps {}
 
 const Register = ({}) => {
+    const [{error}, register] = useRegisterMutation()
     return (
         <Wrapper size='small'>
             <Formik
                 initialValues={{ username: "", password: "", email: "" }}
                 onSubmit={values => {
-                    console.log(values);
+                    return register(values)
                 }}>
-                {({ values, handleChange }) => (
+                {({ isSubmitting }) => (
                     <Form>
                         <InputField
                             label='Username'
                             name='username'
                             placeholder='Username'
                         />
+                        <InputField
+                            label='Email'
+                            name='email'
+                            placeholder='Email'
+                            type='email'
+                        />
 
                         <InputField
                             label='Password'
                             name='password'
                             placeholder='Password'
-                            type="password"
+                            type='password'
                         />
+                        <Flex ml='auto' h='100%'>
+                            <Button
+                                mt={4}
+                                colorScheme='teal'
+                                isLoading={isSubmitting}
+                                type='submit'>
+                                Submit
+                            </Button>
+                        </Flex>
                     </Form>
                 )}
             </Formik>
