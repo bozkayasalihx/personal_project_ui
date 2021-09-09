@@ -5,31 +5,31 @@ import { useField } from "formik";
 import { InputHTMLAttributes } from "react";
 
 type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
-    name: string;
-    label: string;
-    placeholder: string;
-    type?: string;
+  name: string;
+  label: string;
+  placeholder: string;
+  type?: string;
 };
 
-const InputField: React.FC<InputFieldProps> = props => {
-    const [field, { error }] = useField(props);
+const InputField: React.FC<InputFieldProps> = (props) => {
+  const [field, { error }] = useField(props);
 
-    return (
-        <Box mt={5}>
-            <FormControl isInvalid={!!error}>
-                <FormLabel htmlFor={field.name}>{props.label}</FormLabel>
-                <Input
-                    {...field}
-                    id={field.name}
-                    placeholder={props.placeholder}
-                    variant='filled'
-                />
-                {/* {error && (
+  return (
+    <Box mt={5}>
+      <FormControl isInvalid={!!error}>
+        <FormLabel htmlFor={field.name}>{props.label}</FormLabel>
+        <Input
+          {...field}
+          id={field.name}
+          placeholder={props.placeholder}
+          variant="filled"
+        />
+        {/* {error && (
                     <FormErrorMessage>{toErrorMap(error)}</FormErrorMessage>
                 )} */}
-            </FormControl>
-        </Box>
-    );
+      </FormControl>
+    </Box>
+  );
 };
 
 export default InputField;

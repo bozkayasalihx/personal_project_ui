@@ -12,13 +12,13 @@ query listPosts {
 }
 `;
 const ListPosts = ({}) => {
-    const [{ data }, reexecuteQuery] = useQuery({
-        query: GET_POSTS,
-    });
+  const [{ data }, reexecuteQuery] = useQuery({
+    query: GET_POSTS,
+  });
 
-    console.log("data ", data);
+  console.log("data ", data);
 
-    return <div>todo</div>;
+  return <div>todo</div>;
 };
 
 export default ListPosts;
